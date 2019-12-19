@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<div class="container" style="width: 75%">
+
+        <form action="/courses" method="POST">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Course Id</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="courseId" id="courseId" placeholder="Course Id">
+                    <small id="courseHelp" class="form-text text-muted">Enter the four digit course id here.</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Course Name</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="courseName" placeholder="Course Name">
+                </div>
+            </div>
+            <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Department</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="department">
+                        <option>CS</option>
+                        <option>IS</option>
+                </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+</div>
+{% endblock %}

@@ -4,9 +4,9 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container" style="width: 75%;">
         <h3>List of Courses</h3>
-    <table class="table table-hover" style="width: 75%;" >
+    <table class="table table-hover" >
     <thead class = "thead-dark">
         <tr>
             <th scope="col">Course Id</th>
@@ -24,6 +24,11 @@
         {% endfor %}
     </tbody>
 </table>
+
+<div>
+    <a href="/createCourse" class="btn btn-warning" role="button" aria-pressed="true">Add New Course</a>
+</div>
+
 </div>
 
 {% endblock %}
