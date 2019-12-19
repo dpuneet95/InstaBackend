@@ -1,39 +1,13 @@
-<!doctype html>
-<html>
-<head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+{% extends 'base.html' %}
 
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-	
+{% block content %}
 
 	<style>
-		.split {
-		  height: 100%;
-		  width: 50%;
-		  position: fixed;
-		  z-index: 1;
-		  top: 0;
-		  overflow-x: hidden;
-		  padding-top: 20px;
-		}
+		
 
-		.left {
-		  left: 0;
-		  background-color: #add8e6;
-		}
-
-		.right {
-		  right: 0;
-		  background-color: #90ee90;
-		}
 
 		.centered {
-		  position: absolute;
 		  top: 50%;
 		  left: 50%;
 		  transform: translate(-50%, -50%);
@@ -41,47 +15,147 @@
 		}
 
 		.zoom {
-		  padding: 50px;
 		  transition: transform .2s; /* Animation */
-		  width: 200px;
-		  height: 200px;
-		  margin: 0 auto;
+
 		}
 
 		.zoom:hover {
-		  -ms-transform: scale(1.5); /* IE 9 */
-  		  -webkit-transform: scale(1.5);
-		  transform: scale(1.5);
+		  -ms-transform: scale(1.1); /* IE 9 */
+  		  -webkit-transform: scale(1.1);
+		  transform: scale(1.1);
 		}
-</style>
+
+		.left{
+		  font-family : "Georgia";
+		  float:left;
+		  width:40%;
+		  overflow-x:auto;
+		  white-space: nowrap; 
+		}
+
+		.middle{
+		  float:left;
+		  width:30%;
+		  overflow-x:auto;
+		  white-space: nowrap; 
+		  font-family : "Georgia";
+		}
+		.right{
+		  float:left;
+		  width:30%;
+		  overflow-x:auto;
+		  white-space: nowrap; 
+		  font-family : "Georgia";
+		}
+
+		
 	</style>
 
-</head>
 
-<title>Homepage</title>
-<body style="padding-left:30px;">
 
-	<div class="split left">
-	  <div class="centered">
-	    <a href = "/index">
-	    <img src="../static/course_icon_2.png" href="/index" alt="View courses Logo" width="300" height="300" class="zoom">
-		<h2> View Courses </h2>	
-	    </a>
-	
-	    
-	  </div>
+<div class = "container">
+	<br/>
+	<div class="jumbotron" style="padding:20px;">
+	  <h1>Welcome to Course catalogue application!</h2>
+	  <p class="lead">Using this application, you can view/add courses, as per requirements.</p>
+	  <hr class="my-4">
+	  <p>In case of application crash, please contact the administrator at: admin@dummysupport.com </p>
+	  <p>	
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+	  </p>
+
+	  <p class="lead">
+	    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+	  </p>
 	</div>
 
-	<div class="split right">
-	  <div class="centered">
-	    <a href = "/createCourse">
-	    <img src="../static/create_course_2.png"  alt="Create course Logo" width="300" height="300" class="zoom">
-		<h2> Create Course </h2>	
-	    </a>
+
+
 	
-	    
-	  </div>
+	<div class="row text-center">
+
+      <div class="col-lg-3 col-md-6 mb-3">
+		<div class = "zoom">        
+		<div class="card">
+			
+				<a href = "/courses">
+					<img src="../static/course_icon_2.png" class="card-img-top" href="/courses" alt="View courses Logo" class="zoom">
+			   </a>
+		      <div class="card-body">
+		        <h4 class="card-title"> View Courses</h4>
+				</a>
+		        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+		      </div>
+		      <div class="card-footer">
+		        <a href="#" class="btn btn-primary">Find Out More!</a>
+		      </div>
+       		</div>
+      </div>
 	</div>
 
-</body>
-</html>
+       
+      
+      <div class="col-lg-3 col-md-6 mb-3">
+		<div class = "zoom">        
+		<div class="card">
+			
+				<a href = "/createCourse">
+					<img src="../static/create_course_2.png" class="card-img-top" href="/createCourse" alt="View courses Logo" class="zoom">
+			   </a>
+		      <div class="card-body">
+		        <h4 class="card-title"> Create Course</h4>
+				</a>
+		        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+		      </div>
+		      <div class="card-footer">
+		        <a href="#" class="btn btn-primary">Find Out More!</a>
+		      </div>
+   		</div>
+      </div>
+		</div>
+
+		<div class="col-lg-3 col-md-6 mb-3">
+		<div class = "zoom">        
+		<div class="card">
+			
+				<a href = "/topcourses">
+					<img src="../static/top_courses.png" class="card-img-top" alt="View courses Logo" class="zoom">
+			   </a>
+		      <div class="card-body">
+		        <h4 class="card-title"> Top Courses</h4>
+				</a>
+		        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+		      </div>
+		      <div class="card-footer">
+		        <a href="#" class="btn btn-primary">Find Out More!</a>
+		      </div>
+   		</div>
+      </div>
+		</div>
+
+		<div class="col-lg-3 col-md-6 mb-3">
+		<div class = "zoom">        
+		<div class="card">
+			
+				<a href = "#">
+					<img src="../static/announcement_logo.png" class="card-img-top" href="/courses" alt="View courses Logo" class="zoom">
+			   </a>
+		      <div class="card-body">
+		        <h4 class="card-title"> Course Announcements</h4>
+				</a>
+		        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse</p>
+		      </div>
+		      <div class="card-footer">
+		        <a href="#" class="btn btn-primary">Find Out More!</a>
+		      </div>
+   		</div>
+      </div>
+		</div>
+
+    </div>
+
+</div>
+	
+
+{% endblock %}
+
