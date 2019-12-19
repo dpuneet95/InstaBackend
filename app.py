@@ -8,6 +8,10 @@ from sqlite3 import Error
 con = sqlite3.connect('toy.db', check_same_thread=False)
 cursorObj = con.cursor()
 
+@app.route('/')
+def render_homepage():
+	return render_template('homepage.html')
+
 @app.route('/courses', methods=['GET', 'POST'])
 def index():
     if request.method == "GET":
@@ -19,7 +23,7 @@ def index():
 def getCourses():
     cursorObj.execute('select * from courses')
     rows = cursorObj.fetchall()
-    return render_template('index.html', result=rows)
+    return render_template('courses.html', result=rows)
 
 @app.route('/createCourse')
 def createCourse():
@@ -38,7 +42,7 @@ def commitCourse():
     con.commit()
     cursorObj.execute('select * from courses')
     rows = cursorObj.fetchall()
-    return render_template('index.html', result=rows)
+    return render_template('courses.html', result=rows)
 
 if __name__ == "__main__":
     app.run(debug=True)

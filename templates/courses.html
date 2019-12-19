@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<div class="container" style="width: 75%;">
+    
+    <form style="padding:10px;width:75%;" method="post" action="/index" enctype="multipart/form-data" onsubmit="this.submit();">
+  
+        <div class="form-group row">
+         
+            <label for="category" class="col-sm-3 col-form-label">Filter by Dept.</label>
+            <div class="col-sm-7">
+                <select class="form-control" id="category" name = "category">
+                    <option>All</option>
+                    <option>CS</option>
+                    <option>IS</option>
+                </select>
+            </div>
+
+            <br/>
+            <div class="col-sm-2">
+                <input type="submit" value="submit" class = "btn btn-light">
+            </div>
+
+            
+        </div>      
+    </form>
+
+    <table class="table table-hover" >
+    <thead class = "thead-dark">
+        <tr>
+            <th scope="col">Course Id</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Department</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for r in result%}
+        <tr>
+            <td>{{r[0]}}</td>
+            <td>{{r[1]}}</td>
+            <td>{{r[2]}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div>
+    <a href="/createCourse" class="btn btn-success" role="button" aria-pressed="true">Add New Course</a>
+</div>
+
+</div>
+
+{% endblock %}
