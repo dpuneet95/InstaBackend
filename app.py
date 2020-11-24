@@ -1,48 +1,39 @@
 from flask import Flask, render_template, request
+from flask import jsonify
+from collections import defaultdict
+
 app = Flask(__name__)
 
-import sqlite3
-from sqlite3 import Error
+import boto3
+import botocore
 
-
-con = sqlite3.connect('toy.db', check_same_thread=False)
-cursorObj = con.cursor()
+client = boto3.client('s3')
+s3 = boto3.resource('s3')
 
 @app.route('/')
 def render_homepage():
-	return render_template('homepage.html')
-
-@app.route('/courses', methods=['GET', 'POST'])
-def index():
-    if request.method == "GET":
-        return getCourses()
-
-    if request.method == "POST":
-        return commitCourse()
     
-def getCourses():
-    cursorObj.execute('select * from courses')
-    rows = cursorObj.fetchall()
-    return render_template('courses.html', result=rows)
+    print("line2")
+    location = request.args.get('location')
+    print(location)
+    bucket = s3.Bucket(location).objects.all()
+    #all_images = []
+    data = defaultdict(list)
+    for obj in bucket:
+        url = 'https://' + location + '.s3.amazonaws.com/' + obj.key
+        tag_name = obj.key.split('/')[0]
+        tags = [{'value': tag_name, 'title': tag_name}]
+        image_info = {
+            'src': url,
+            'thumbnail': url,
+            'thumbnailWidth': obj.key,
+            'thumbnailHeight': obj.key,
+            'tags': tags,
+        }
+        data['all'].append(image_info)
+        
+    return jsonify(data)
 
-@app.route('/createCourse')
-def createCourse():
-    return render_template('create_course.html')
-
-def commitCourse():
-    print(request.method)
-    
-    q = "insert into Courses values(" \
-    + str(request.form['courseId']) + ",'" \
-    + str(request.form['courseName']) + "','" \
-    + str(request.form['department']) + "')"
-    
-    print(q)
-    cursorObj.execute(q)
-    con.commit()
-    cursorObj.execute('select * from courses')
-    rows = cursorObj.fetchall()
-    return render_template('courses.html', result=rows)
 
 if __name__ == "__main__":
     app.run(debug=True)
