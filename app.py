@@ -2,8 +2,11 @@ from flask import Flask, request
 from flask import jsonify
 from collections import defaultdict
 import boto3
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+cors = CORS(app, resources={r"/api/": {"origins": ""}})
 
 client = boto3.client('s3')
 s3 = boto3.resource('s3')
