@@ -13,14 +13,12 @@ s3 = boto3.resource('s3')
 @app.route('/')
 def render_homepage():
     
-    print("line2")
     location = request.args.get('location')
-    print(location)
     bucket = s3.Bucket(location).objects.all()
-    #all_images = []
+
     data = defaultdict(list)
     for obj in bucket:
-        url = 'https://' + location + '.s3.amazonaws.com/' + obj.key
+        url = 'https://insta' + location + '.s3.amazonaws.com/' + obj.key
         tag_name = obj.key.split('/')[0]
         tags = [{'value': tag_name, 'title': tag_name}]
         image_info = {
@@ -31,6 +29,7 @@ def render_homepage():
             'tags': tags,
         }
         data['all'].append(image_info)
+        data[tag_name].append(image_info)
         
     return jsonify(data)
 
